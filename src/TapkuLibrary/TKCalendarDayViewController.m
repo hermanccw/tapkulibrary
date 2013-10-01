@@ -38,8 +38,8 @@
 #pragma mark View Lifecycle
 - (void) loadView{
 	[super loadView];
-	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-		self.edgesForExtendedLayout = UIRectEdgeNone;
+//	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//		self.edgesForExtendedLayout = UIRectEdgeNone;
 
 	self.dayView = [[TKCalendarDayView alloc] initWithFrame:self.view.bounds];
 	self.dayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

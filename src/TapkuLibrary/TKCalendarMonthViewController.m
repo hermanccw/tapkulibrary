@@ -76,9 +76,10 @@
 	[super loadView];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-		self.edgesForExtendedLayout = UIRectEdgeNone;
+//	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//		self.edgesForExtendedLayout = UIRectEdgeNone;
 	
+  
 	self.monthView = [[TKCalendarMonthView alloc] initWithSundayAsFirst:self.sundayFirst timeZone:self.timeZone];
 	self.monthView.dataSource = self;
 	self.monthView.delegate = self;

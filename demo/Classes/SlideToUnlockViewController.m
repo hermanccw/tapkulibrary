@@ -24,8 +24,8 @@
 	[self.view addSubview:image];
 	
 	
-	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
-		self.edgesForExtendedLayout = UIRectEdgeNone;
+//	if([self respondsToSelector:@selector(edgesForExtendedLayout)])
+//		self.edgesForExtendedLayout = UIRectEdgeNone;
 	
 	
 	
@@ -51,22 +51,22 @@
 	self.title = NSLocalizedString(@"Slide to Unlock", @"");
 	
 	
-	if(NSStringFromClass([UIInterpolatingMotionEffect class])){
-		
-		UIInterpolatingMotionEffect *mx;
-		
-		mx = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-		mx.maximumRelativeValue = @(10);
-		mx.minimumRelativeValue = @(-10);
-		[self.unlockView addMotionEffect:mx];
-		
-		mx = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-		mx.maximumRelativeValue = @(10);
-		mx.minimumRelativeValue = @(-10);
-		[self.unlockView addMotionEffect:mx];
-		
-		
-	}
+//	if(NSStringFromClass([UIInterpolatingMotionEffect class])){
+//		
+//		UIInterpolatingMotionEffect *mx;
+//		
+//		mx = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+//		mx.maximumRelativeValue = @(10);
+//		mx.minimumRelativeValue = @(-10);
+//		[self.unlockView addMotionEffect:mx];
+//		
+//		mx = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+//		mx.maximumRelativeValue = @(10);
+//		mx.minimumRelativeValue = @(-10);
+//		[self.unlockView addMotionEffect:mx];
+//		
+//		
+//	}
 
 	
 

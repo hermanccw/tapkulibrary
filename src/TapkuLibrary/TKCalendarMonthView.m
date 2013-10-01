@@ -428,7 +428,7 @@ static UIImage *tileImage;
 		
 	self.currentDay.text = [numberFormatter stringFromNumber:@(day)];
 	
-	if (self.marks.count > 0) {
+	if (self.marks.count > 0 && self.marks.count > (row * 7 + column)) {
 		
 		if([self.marks[row * 7 + column] boolValue]){
 			hasDot = YES;
@@ -531,7 +531,7 @@ static UIImage *tileImage;
 	[self addSubview:self.selectedImageView];
 	self.currentDay.text = [NSString stringWithFormat:@"%ld",(long)day];
 	
-	if (self.marks.count > 0) {
+	if (self.marks.count > 0 && self.marks.count > (row * 7 + column)) {
 		if([self.marks[row * 7 + column] boolValue])
 			[self.selectedImageView addSubview:self.dot];
 		else

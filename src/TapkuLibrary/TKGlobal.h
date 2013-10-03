@@ -38,6 +38,9 @@
 
 #define TKBUNDLE(_URL) [TKGlobal fullBundlePath:[@"TapkuLibrary.bundle/Images" stringByAppendingPathComponent:_URL]]
 
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+
+#define IPAD     UIUserInterfaceIdiomPad
 
 FOUNDATION_STATIC_INLINE CATransform3D CAScale(CGFloat x,CGFloat y,CGFloat z);
 FOUNDATION_STATIC_INLINE CATransform3D CAScale(CGFloat x,CGFloat y,CGFloat z){
@@ -116,5 +119,6 @@ FOUNDATION_STATIC_INLINE CGPoint CGRectMidpoint(CGRect rect){
 @interface TKGlobal : NSObject 
 
 + (NSString*) fullBundlePath:(NSString*)bundlePath;
++ (CGFloat) iPadFactor;
 
 @end

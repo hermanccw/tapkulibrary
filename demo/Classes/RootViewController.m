@@ -127,8 +127,17 @@
 		}
 
 		return;
-	}else if(s==0 && r==1)
-		vc = [[CalendarMonthViewController alloc] initWithSunday:YES];
+	}else if(s==0 && r==1) {
+    vc = [[CalendarMonthViewController alloc] initWithSunday:YES];
+    if(self.detailViewController)
+			[self.detailViewController setupWithMainController:vc];
+		else{
+			[vc setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+			[self presentViewController:vc animated:YES completion:nil];
+		}
+
+		return;
+  }
 	
 	else if(s==0 && r==2)
 		vc = [[CalendarDayViewController alloc] init];

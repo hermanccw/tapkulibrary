@@ -38,5 +38,8 @@
 }
 
 
++ (CGFloat) iPadFactor {
+  return (IDIOM == IPAD) ? 2.4f : 1.0f;
+}
 
 @end

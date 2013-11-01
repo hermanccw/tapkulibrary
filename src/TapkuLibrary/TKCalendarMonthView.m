@@ -971,7 +971,8 @@ static UIImage *tileImage;
 	_leftArrow.frame = CGRectMake(0, 0, 52*[TKGlobal iPadFactor], 36*[TKGlobal iPadFactor]);
 	_leftArrow.accessibilityLabel = @"Previous Month";
 	[_leftArrow addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
-	[_leftArrow setImage:[UIImage imageNamedTK:@"calendar/calendar_left_arrow"] forState:0];
+  NSString *imageFile = (IDIOM == IPAD) ? @"calendar/calendar_left_arrow.png" : @"calendar/calendar_left_arrow~iphone.png";
+  [_leftArrow setImage:[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)] forState:0];
 	return _leftArrow;
 }
 - (UIButton *) rightArrow{
@@ -982,7 +983,8 @@ static UIImage *tileImage;
 	_rightArrow.frame = CGRectMake((VIEW_WIDTH*[TKGlobal iPadFactor])-(52*[TKGlobal iPadFactor]), 0, 52*[TKGlobal iPadFactor], 36*[TKGlobal iPadFactor]);
 	_rightArrow.accessibilityLabel = @"Next Month";
 	[_rightArrow addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
-	[_rightArrow setImage:[UIImage imageNamedTK:@"calendar/calendar_right_arrow"] forState:0];
+  NSString *imageFile = (IDIOM == IPAD) ? @"calendar/calendar_right_arrow.png" : @"calendar/calendar_right_arrow~iphone.png";
+  [_rightArrow setImage:[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)] forState:0];
 	return _rightArrow;
 }
 - (UIView *) tileBox{

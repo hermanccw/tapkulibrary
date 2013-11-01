@@ -280,10 +280,6 @@ static UIImage *tileImage;
 	NSInteger row = index / 7;
 	NSInteger col = index % 7;
 
-	NSLog(@"index: %d", index);
-  NSLog(@"rect: %@", NSStringFromCGRect(CGRectMake(col*(46*[TKGlobal iPadFactor])-1, row*(44*[TKGlobal iPadFactor])+(6*[TKGlobal iPadFactor]), 46*[TKGlobal iPadFactor], 44*[TKGlobal iPadFactor])));
-  
-  
 	return CGRectMake(col*(46*[TKGlobal iPadFactor])-1, row*(44*[TKGlobal iPadFactor])+(6*[TKGlobal iPadFactor]), 46*[TKGlobal iPadFactor], 44*[TKGlobal iPadFactor]);
 }
 - (void) drawTileInRect:(CGRect)r day:(NSInteger)day mark:(BOOL)mark font:(UIFont*)f1 font2:(UIFont*)f2 context:(CGContextRef)context{
@@ -493,8 +489,6 @@ static UIImage *tileImage;
 	NSInteger column = p.x / (46*[TKGlobal iPadFactor]), row = p.y / (44*[TKGlobal iPadFactor]);
 	NSInteger day = 1, portion = 0;
   
-  NSLog(@"bounds height: %f", self.bounds.size.height);
-	
 	if(row == (int) (self.bounds.size.height / (44*[TKGlobal iPadFactor]))) row --;
 	
 	NSInteger fir = firstWeekday - 1;
@@ -655,13 +649,9 @@ static UIImage *tileImage;
 
 + (void) initialize{
     if (self == [TKCalendarMonthView class]){
-      
-      NSString *imageFile = (IDIOM == IPAD) ? @"calendar/color_gradient.png" : @"calendar/color_gradient.~iphone.png";
-		gradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)]];
-      
-      imageFile = (IDIOM == IPAD) ? @"calendar/color_gradient_gray.png" : @"calendar/color_gradient_gray~iphone.png";
-		grayGradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)]];
-		numberFormatter = [[NSNumberFormatter alloc] init];
+      gradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient.png")]];
+      grayGradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient_gray.png")]];
+      numberFormatter = [[NSNumberFormatter alloc] init];
     }
 }
 - (id) initWithSundayAsFirst:(BOOL)s timeZone:(NSTimeZone*)timeZone{

@@ -14,5 +14,6 @@ Pod::Spec.new do |s|
   s.requires_arc  = true
   s.source_files  = 'src/TapkuLibrary/*.{h,m}'
   s.resources     = 'src/TapkuLibrary.bundle'
-  s.frameworks    = 'QuartzCore'
+  s.frameworks    = ['QuartzCore']
+  s.prefix_header_contents = "#import <QuartzCore/QuartzCore.h>"
 end

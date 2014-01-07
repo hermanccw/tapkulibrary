@@ -341,8 +341,8 @@ static UIImage *tileImage;
 	NSInteger index = 0, mc = self.marks.count;
 	
 	
-	UIFont *font = [UIFont boldSystemFontOfSize:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
-	UIFont *font2 =[UIFont boldSystemFontOfSize:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
+  UIFont *font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+ 	UIFont *font2 =[UIFont fontWithName:@"Helvetica" size:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
 	UIColor *color = grayGradientColor;
 	
 	if(firstOfPrev>0){
@@ -409,7 +409,7 @@ static UIImage *tileImage;
 	
 	selectedDay = day;
 	selectedPortion = 1;
-	self.currentDay.font = [UIFont boldSystemFontOfSize:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+ 	self.currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
 
 	
 	BOOL hasDot = NO;
@@ -510,7 +510,7 @@ static UIImage *tileImage;
 		day = day - daysInMonth;
 	}
 	
-	self.currentDay.font = [UIFont boldSystemFontOfSize:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+ 	self.currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
 	self.currentDay.hidden = NO;
 	self.dot.hidden = NO;
 	
@@ -590,7 +590,7 @@ static UIImage *tileImage;
 	_currentDay.text = @"1";
 	_currentDay.textColor = [UIColor whiteColor];
 	_currentDay.backgroundColor = [UIColor clearColor];
-	_currentDay.font = [UIFont boldSystemFontOfSize:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+ 	_currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
 	_currentDay.textAlignment = NSTextAlignmentCenter;
 	_currentDay.shadowColor = [UIColor darkGrayColor];
 	_currentDay.shadowOffset = CGSizeMake(0, -1);
@@ -606,7 +606,7 @@ static UIImage *tileImage;
 	_dot.text = @"•";
 	_dot.textColor = [UIColor whiteColor];
 	_dot.backgroundColor = [UIColor clearColor];
-	_dot.font = [UIFont boldSystemFontOfSize:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
+ 	_dot.font = [UIFont fontWithName:@"Helvetica" size:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
 	_dot.textAlignment = NSTextAlignmentCenter;
 	_dot.shadowColor = [UIColor darkGrayColor];
 	_dot.shadowOffset = CGSizeMake(0, -1);

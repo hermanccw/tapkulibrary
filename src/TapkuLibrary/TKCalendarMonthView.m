@@ -524,7 +524,7 @@ static UIImage *tileImage;
 	}else if(portion==1 && day == today){
 		self.currentDay.shadowOffset = CGSizeMake(0, -1);
 		self.dot.shadowOffset = CGSizeMake(0, -1);
-    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selcted Tile~iphone.png";
+    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
 		self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
 		markWasOnToday = YES;
 	}else if(markWasOnToday){
@@ -660,7 +660,7 @@ static UIImage *tileImage;
 	self.timeZone = timeZone;
 	self.sunday = s;
 	
-	[self addSubview:self.dropshadow];
+//	[self addSubview:self.dropshadow];
 	[self addSubview:self.topBackground];
 	[self addSubview:self.leftArrow];
 	[self addSubview:self.rightArrow];

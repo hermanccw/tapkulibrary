@@ -51,7 +51,7 @@ static UIImage *tileImage;
 #define VIEW_WIDTH 320.0f
 
 #pragma mark - TKCalendarMonthTiles
-@interface TKCalendarMonthTiles : UIView {
+@interface TKCalendarMonthTiles() {
 	NSInteger firstOfPrev,lastOfPrev, today;
 	NSInteger selectedDay,selectedPortion;
 	NSInteger firstWeekday, daysInMonth;
@@ -156,7 +156,7 @@ static UIImage *tileImage;
 		
 		NSInteger preDayCnt = [previousMonth daysBetweenDate:currentMonth];		
 		info2.day = preDayCnt - info.weekday + 2;
-		firstDate = [NSDate dateWithDateComponents:info2];
+  firstDate = [NSDate dateWithDateComponents:info2];
 		
 		
 	}else if(!sunday && info.weekday != 2){

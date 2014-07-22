@@ -35,6 +35,13 @@
 
 @protocol TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource;
 
+
+@interface TKCalendarMonthTiles : UIView {
+}
++ (NSArray*) rangeOfDatesInMonthGrid:(NSDate*)date startOnSunday:(BOOL)sunday timeZone:(NSTimeZone*)timeZone;
+@end
+
+
 #pragma mark - TKCalendarMonthView
 /** `TKCalendarMonthView` imitates the month grid in the Calendar app on iPhone. */
 @interface TKCalendarMonthView : UIView
@@ -92,7 +99,6 @@
  @param next YES for next month, NO for previous month.
  */
 - (void) animateToNextOrPreviousMonth:(BOOL)next;
-
 
 @end
 

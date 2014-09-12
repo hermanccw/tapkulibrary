@@ -168,7 +168,7 @@ typedef enum _TKNetworkErrorType {
 @property (nonatomic,copy) TKBasicBlock startedBlock;
 
 /** The block called up the finishing of the request. */
-@property (nonatomic,copy) TKBasicBlock completionBlock;
+@property (copy) TKBasicBlock completionBlock;
 
 /** The block called up the finishing of the request and processing of the JSON response data. */
 @property (nonatomic,copy) TKJSONCompletionBlock JSONCompletionBlock;

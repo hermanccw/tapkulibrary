@@ -10,29 +10,29 @@
 	<string>Demo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E6E84476-7E08-4ADE-968E-0995FCC6B413</key>
-		<string>ssh://github.com/devinross/tapkulibrary.git</string>
+		<key>EE5017F42780957232AFF14DD75D9A51833942BE</key>
+		<string>https://github.com/hermanccw/tapkulibrary.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>demo/Demo.xcodeproj/project.xcworkspace</string>
+	<string>demo/Demo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E6E84476-7E08-4ADE-968E-0995FCC6B413</key>
+		<key>EE5017F42780957232AFF14DD75D9A51833942BE</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/devinross/tapkulibrary.git</string>
+	<string>https://github.com/hermanccw/tapkulibrary.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E6E84476-7E08-4ADE-968E-0995FCC6B413</string>
+	<string>EE5017F42780957232AFF14DD75D9A51833942BE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E6E84476-7E08-4ADE-968E-0995FCC6B413</string>
+			<string>EE5017F42780957232AFF14DD75D9A51833942BE</string>
 			<key>IDESourceControlWCCName</key>
 			<string>tapkulibrary</string>
 		</dict>

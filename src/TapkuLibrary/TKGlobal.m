@@ -39,7 +39,18 @@
 
 
 + (CGFloat) iPadFactor {
-  return (IDIOM == IPAD) ? 2.4f : 1.0f;
+    if (IDIOM != IPAD) {
+        if (CGRectGetWidth(UIScreen.mainScreen.bounds) == 375.0f) { //iPhone 6
+            return 1.17f;
+        }
+        else if(CGRectGetWidth(UIScreen.mainScreen.bounds) == 414.0f) { //iPhone 6 Plus
+            return 1.29f;
+        }
+        //iPhone 5s and earlier
+        return 1.0f;
+    }
+    
+    return (IDIOM == IPAD) ? 2.4f : 1.0f;
 }
 
 @end

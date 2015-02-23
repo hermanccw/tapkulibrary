@@ -535,6 +535,9 @@ static UIImage *tileImage;
 		self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
 		markWasOnToday = NO;
 	}
+    
+    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
 	
 	[self addSubview:self.selectedImageView];
 	self.currentDay.text = [NSString stringWithFormat:@"%ld",(long)day];

@@ -313,7 +313,7 @@ static UIImage *tileImage;
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	UIImage *tile = tileImage;
 	CGRect r = CGRectMake(-1, 0, 46*[TKGlobal iPadFactor], 44*[TKGlobal iPadFactor]);
-	
+    
 	CGContextSetInterpolationQuality(context, kCGInterpolationNone);
 	CGContextDrawTiledImage(context, r, tile.CGImage);
 	
@@ -332,7 +332,7 @@ static UIImage *tileImage;
 	CGFloat myColorValues[] = {1, 1, 1, .8};
     CGColorSpaceRef myColorSpace = CGColorSpaceCreateDeviceRGB();
     CGColorRef whiteColor = CGColorCreate(myColorSpace, myColorValues);
-	CGContextSetShadowWithColor(context, CGSizeMake(0,1), 0, whiteColor);
+//	CGContextSetShadowWithColor(context, CGSizeMake(0,1), 0, whiteColor);
 
 	CGFloat darkColorValues[] = {0, 0, 0, .5};
     CGColorRef darkColor = CGColorCreate(myColorSpace, darkColorValues);
@@ -368,7 +368,7 @@ static UIImage *tileImage;
 		
 		r = [self rectForCellAtIndex:index];
 		if(today == i){
-			CGContextSetShadowWithColor(context, CGSizeMake(0,-1), 0, darkColor);
+//			CGContextSetShadowWithColor(context, CGSizeMake(0,-1), 0, darkColor);
 			[[UIColor whiteColor] set];
 			r.origin.y += 1;
 		}
@@ -377,7 +377,7 @@ static UIImage *tileImage;
 		[self drawTileInRect:r day:i mark:mark font:font font2:font2 context:context];
 		
 		if(today == i){
-			CGContextSetShadowWithColor(context, CGSizeMake(0,1), 0, whiteColor);
+//			CGContextSetShadowWithColor(context, CGSizeMake(0,1), 0, whiteColor);
 			[color set];
 		}
 		index++;
@@ -595,8 +595,8 @@ static UIImage *tileImage;
 	_currentDay.backgroundColor = [UIColor clearColor];
  	_currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
 	_currentDay.textAlignment = NSTextAlignmentCenter;
-	_currentDay.shadowColor = [UIColor darkGrayColor];
-	_currentDay.shadowOffset = CGSizeMake(0, -1);
+//	_currentDay.shadowColor = [UIColor darkGrayColor];
+//	_currentDay.shadowOffset = CGSizeMake(0, -1);
 	return _currentDay;
 }
 - (UILabel *) dot{
@@ -611,8 +611,8 @@ static UIImage *tileImage;
 	_dot.backgroundColor = [UIColor clearColor];
  	_dot.font = [UIFont fontWithName:@"Helvetica" size:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
 	_dot.textAlignment = NSTextAlignmentCenter;
-	_dot.shadowColor = [UIColor darkGrayColor];
-	_dot.shadowOffset = CGSizeMake(0, -1);
+//	_dot.shadowColor = [UIColor darkGrayColor];
+//	_dot.shadowOffset = CGSizeMake(0, -1);
 	return _dot;
 }
 - (UIImageView *) selectedImageView{
@@ -652,8 +652,11 @@ static UIImage *tileImage;
 
 + (void) initialize{
     if (self == [TKCalendarMonthView class]){
-      gradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient.png")]];
-      grayGradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient_gray.png")]];
+//      gradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient.png")]];
+//      grayGradientColor = [UIColor colorWithPatternImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"calendar/color_gradient_gray.png")]];
+        gradientColor = [UIColor colorWithRed:59.0/255.0 green:73.0/255.0 blue:89.0/255.0 alpha:1];
+        grayGradientColor = [UIColor grayColor];
+        
       numberFormatter = [[NSNumberFormatter alloc] init];
     }
 }
@@ -731,8 +734,8 @@ static UIImage *tileImage;
         
 		label.text = s;
 		label.textAlignment = NSTextAlignmentCenter;
-		label.shadowColor = [UIColor whiteColor];
-		label.shadowOffset = CGSizeMake(0, 1);
+//		label.shadowColor = [UIColor whiteColor];
+//		label.shadowOffset = CGSizeMake(0, 1);
 		label.font = [UIFont boldSystemFontOfSize:10];
 		label.backgroundColor = [UIColor clearColor];
 		label.textColor = TEXT_COLOR;
@@ -961,8 +964,8 @@ static UIImage *tileImage;
 	_monthYear.textAlignment = NSTextAlignmentCenter;
 	_monthYear.backgroundColor = [UIColor clearColor];
 	_monthYear.font = [UIFont boldSystemFontOfSize:22];
-	_monthYear.shadowColor = [UIColor whiteColor];
-	_monthYear.shadowOffset = CGSizeMake(0,1);
+//	_monthYear.shadowColor = [UIColor whiteColor];
+//	_monthYear.shadowOffset = CGSizeMake(0,1);
 	_monthYear.textColor = gradientColor;
 	return _monthYear;
 }

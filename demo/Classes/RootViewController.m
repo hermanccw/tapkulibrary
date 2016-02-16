@@ -66,27 +66,27 @@
 @implementation RootViewController
 
 - (id) initWithStyle:(UITableViewStyle)s{
-	if(!(self = [super initWithStyle:s])) return nil;
-	self.title = @"Tapku Library";
-	return self;
+    if(!(self = [super initWithStyle:s])) return nil;
+    self.title = @"Tapku Library";
+    return self;
 }
 - (NSUInteger) supportedInterfaceOrientations{
-	return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
+    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? UIInterfaceOrientationMaskAll : UIInterfaceOrientationMaskPortrait;
 }
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? YES : UIInterfaceOrientationIsPortrait(interfaceOrientation) ;
+    return [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? YES : UIInterfaceOrientationIsPortrait(interfaceOrientation) ;
 }
 
 
 #pragma mark View Lifecycle
 - (void) viewDidLoad{
-	[super viewDidLoad];
-
-	self.data = @[
-  @{@"rows" : @[@"Coverflow",@"Month Grid Calendar",@"Day Calendar"], @"title" : @"Views"},
-  @{@"rows" : @[@"Empty Sign",@"Loading HUD",@"Alerts",@"Slide to Unlock"], @"title" : @"UI Elements"},
-  @{@"rows" : @[@"Label Cells",@"More Cells"], @"title" : @"Table View Cells"},
-  @{@"rows" : @[@"Image Cache",@"HTTP Request Progress"], @"title" : @"Network"}];
+    [super viewDidLoad];
+    
+    self.data = @[
+                  @{@"rows" : @[@"Coverflow",@"Month Grid Calendar",@"Day Calendar"], @"title" : @"Views"},
+                  @{@"rows" : @[@"Empty Sign",@"Loading HUD",@"Alerts",@"Slide to Unlock"], @"title" : @"UI Elements"},
+                  @{@"rows" : @[@"Label Cells",@"More Cells"], @"title" : @"Table View Cells"},
+                  @{@"rows" : @[@"Image Cache",@"HTTP Request Progress"], @"title" : @"Network"}];
 }
 
 
@@ -95,84 +95,85 @@
     return [self.data count];
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.data[section][@"rows"] count];
+    return [self.data[section][@"rows"] count];
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-	cell.textLabel.text = self.data[indexPath.section][@"rows"][indexPath.row];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
+    cell.textLabel.text = self.data[indexPath.section][@"rows"][indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 - (void) tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tv deselectRowAtIndexPath:indexPath animated:YES];
-	
-	UIViewController *vc;
-	NSInteger s = indexPath.section, r = indexPath.row;
-	
-	if(s==0 && r == 0){
-		vc = [[CoverflowViewController alloc] init];
-		
-		if(self.detailViewController)
-			[self.detailViewController setupWithMainController:vc];
-		else{
-			[vc setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-			[self presentViewController:vc animated:YES completion:nil];
-		}
-
-		return;
-	}else if(s==0 && r==1) {
-    vc = [[CalendarMonthViewController alloc] initWithSunday:YES];
-    if(self.detailViewController)
-			[self.detailViewController setupWithMainController:vc];
-		else{
-			[vc setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-			[self presentViewController:vc animated:YES completion:nil];
-		}
-
-		return;
-  }
-	
-	else if(s==0 && r==2)
-		vc = [[CalendarDayViewController alloc] init];
-	
-	else if(s==1 && r==0)
-		vc = [[EmptyViewController alloc] init];
-	else if(s==1 && r==1)
-		vc = [[HUDViewController alloc] init];
-	else if(s==1 && r==2)
-		vc = [[AlertsViewController alloc] init];
-	else if(s==1 && r==3)
-		vc = [[SlideToUnlockViewController alloc] init];
-	
-	else if(s==2 && r==0)
-		vc = [[LabelViewController alloc] init];
-	else if(s==2 && r==1)
-		vc = [[MoreCellsViewController alloc] init];
-	
-	else if(s==3 && r==0)
-		vc = [[ImageCenterViewController alloc] init];
-	else
-		vc = [[NetworkRequestProgressViewController alloc] init];
-	
-	
-	if(self.detailViewController && !(s==0))
-		[self.detailViewController setupWithMainController:vc];
-	else
-		[self.navigationController pushViewController:vc animated:YES];
-	
+    [tv deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIViewController *vc;
+    NSInteger s = indexPath.section, r = indexPath.row;
+    
+    if(s==0 && r == 0){
+        vc = [[CoverflowViewController alloc] init];
+        
+        if(self.detailViewController)
+            [self.detailViewController setupWithMainController:vc];
+        else{
+            [vc setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        
+        return;
+    }else if(s==0 && r==1) {
+        vc = [[CalendarMonthViewController alloc] initWithSunday:YES];
+        if(self.detailViewController)
+            [self.detailViewController setupWithMainController:vc];
+        else{
+//            [vc setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//            [self presentViewController:vc animated:YES completion:nil];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+        return;
+    }
+    
+    else if(s==0 && r==2)
+        vc = [[CalendarDayViewController alloc] init];
+    
+    else if(s==1 && r==0)
+        vc = [[EmptyViewController alloc] init];
+    else if(s==1 && r==1)
+        vc = [[HUDViewController alloc] init];
+    else if(s==1 && r==2)
+        vc = [[AlertsViewController alloc] init];
+    else if(s==1 && r==3)
+        vc = [[SlideToUnlockViewController alloc] init];
+    
+    else if(s==2 && r==0)
+        vc = [[LabelViewController alloc] init];
+    else if(s==2 && r==1)
+        vc = [[MoreCellsViewController alloc] init];
+    
+    else if(s==3 && r==0)
+        vc = [[ImageCenterViewController alloc] init];
+    else
+        vc = [[NetworkRequestProgressViewController alloc] init];
+    
+    
+    if(self.detailViewController && !(s==0))
+        [self.detailViewController setupWithMainController:vc];
+    else
+        [self.navigationController pushViewController:vc animated:YES];
+    
 }
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-	return self.data[section][@"title"];
+    return self.data[section][@"title"];
 }
 - (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-	return self.data[section][@"footer"];
+    return self.data[section][@"footer"];
 }
 
 @end

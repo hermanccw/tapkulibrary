@@ -80,16 +80,16 @@ static UIImage *tileImage;
 
 + (void) initialize{
     if (self == [TKCalendarMonthTiles class]){
-//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile.png" : @"calendar/Month Calendar Date Tile~iphone.png";
-//        tileImage = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
+        //        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile.png" : @"calendar/Month Calendar Date Tile~iphone.png";
+        //        tileImage = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
         
         
-                CGSize size = CGSizeMake(100, 100);
-                UIGraphicsBeginImageContextWithOptions(size, YES, 0);
-                [[UIColor whiteColor] setFill];
-                UIRectFill(CGRectMake(0, 0, size.width, size.height));
-                tileImage = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
+        CGSize size = CGSizeMake(100, 100);
+        UIGraphicsBeginImageContextWithOptions(size, YES, 0);
+        [[UIColor whiteColor] setFill];
+        UIRectFill(CGRectMake(0, 0, size.width, size.height));
+        tileImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
 }
 
@@ -162,7 +162,7 @@ static UIImage *tileImage;
         
         NSDateComponents *info2 = [previousMonth dateComponentsWithTimeZone:timeZone];
         
-        NSInteger preDayCnt = [previousMonth daysBetweenDate:currentMonth];		
+        NSInteger preDayCnt = [previousMonth daysBetweenDate:currentMonth];
         info2.day = preDayCnt - info.weekday + 2;
         firstDate = [NSDate dateWithDateComponents:info2];
         
@@ -186,7 +186,7 @@ static UIImage *tileImage;
     
     
     
-    NSInteger daysInMonth = [currentMonth daysBetweenDate:nextMonth];		
+    NSInteger daysInMonth = [currentMonth daysBetweenDate:nextMonth];
     info.day = daysInMonth;
     NSDate *lastInMonth = [NSDate dateWithDateComponents:info];
     NSDateComponents *lastDateInfo = [lastInMonth dateComponentsWithTimeZone:timeZone];
@@ -309,7 +309,7 @@ static UIImage *tileImage;
         
         [@"•" drawInRect: r
                 withFont: f2
-           lineBreakMode: NSLineBreakByWordWrapping 
+           lineBreakMode: NSLineBreakByWordWrapping
                alignment: NSTextAlignmentCenter];
     }
     
@@ -396,7 +396,7 @@ static UIImage *tileImage;
     CGColorRelease(whiteColor);
     CGColorSpaceRelease(myColorSpace);
     
-//    [grayGradientColor set];
+    [grayGradientColor set];
     NSInteger i = 1;
     while(index % 7 != 0){
         r = [self rectForCellAtIndex:index];
@@ -440,6 +440,8 @@ static UIImage *tileImage;
         markWasOnToday = NO;
     }
     
+    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
     
     self.currentDay.text = [numberFormatter stringFromNumber:@(day)];
     
@@ -539,7 +541,7 @@ static UIImage *tileImage;
     }else if(markWasOnToday){
         self.dot.shadowOffset = CGSizeMake(0, -1);
         self.currentDay.shadowOffset = CGSizeMake(0, -1);
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
         NSString *path = TKBUNDLE(imageFile);
         self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
         markWasOnToday = NO;
@@ -584,7 +586,7 @@ static UIImage *tileImage;
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //[super touchesBegan:touches withEvent:event];
     [self reactToTouch:[touches anyObject] down:NO];
-} 
+}
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     [self reactToTouch:[touches anyObject] down:NO];
 }
@@ -681,7 +683,7 @@ static UIImage *tileImage;
     [self addSubview:self.rightArrow];
     [self addSubview:self.tileBox];
     [self addSubview:self.monthYear];
-    [self addSubview:self.shadow];
+    //    [self addSubview:self.shadow];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"eee";

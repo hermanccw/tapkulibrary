@@ -956,13 +956,17 @@ static UIImage *tileImage;
 - (UIView *) topBackground{
     if(_topBackground) return _topBackground;
     
-    TKGradientView *gradient = [[TKGradientView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOP_BAR_HEIGHT*[TKGlobal iPadFactor])];
-    gradient.colors = @[[UIColor colorWithHex:0xf4f4f5],[UIColor colorWithHex:0xccccd1]];
+    UIView *gradient = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOP_BAR_HEIGHT*[TKGlobal iPadFactor])];
     gradient.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 44*[TKGlobal iPadFactor], gradient.bounds.size.width, 1)];
-    line.backgroundColor = [UIColor colorWithHex:0xaaaeb6];
-    line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [gradient addSubview:line];
+    gradient.backgroundColor = [UIColor whiteColor];
+    
+//    TKGradientView *gradient = [[TKGradientView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOP_BAR_HEIGHT*[TKGlobal iPadFactor])];
+//    gradient.colors = @[[UIColor colorWithHex:0xf4f4f5],[UIColor colorWithHex:0xccccd1]];
+//    gradient.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 44*[TKGlobal iPadFactor], gradient.bounds.size.width, 1)];
+//    line.backgroundColor = [UIColor colorWithHex:0xaaaeb6];
+//    line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    [gradient addSubview:line];
     
     gradient.userInteractionEnabled = YES;
     _topBackground = gradient;

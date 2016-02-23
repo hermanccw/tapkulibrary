@@ -332,8 +332,8 @@ static UIImage *tileImage;
         CGRect r = [self rectForCellAtIndex:index];
         r.origin.y -= 6*[TKGlobal iPadFactor];
         
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Tile.png" : @"calendar/Month Calendar Today Tile~iphone.png";
-        [[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)] drawInRect:r];
+//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Tile.png" : @"calendar/Month Calendar Today Tile~iphone.png";
+//        [[UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)] drawInRect:r];
     }
     
     
@@ -378,7 +378,7 @@ static UIImage *tileImage;
         r = [self rectForCellAtIndex:index];
         if(today == i){
             //			CGContextSetShadowWithColor(context, CGSizeMake(0,-1), 0, darkColor);
-            [[UIColor whiteColor] set];
+            [[UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0] set];
             r.origin.y += 1;
         }
         

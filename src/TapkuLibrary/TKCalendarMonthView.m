@@ -46,8 +46,8 @@ static UIImage *tileImage;
 
 #define TEXT_COLOR [UIColor colorWithWhite:84/255. alpha:1]
 #define TOP_BAR_HEIGHT 45.0f
-#define DOT_FONT_SIZE 18.0f
-#define DATE_FONT_SIZE 24.0f
+#define DOT_FONT_SIZE 16.0f
+#define DATE_FONT_SIZE 16.0f
 #define VIEW_WIDTH 320.0f
 
 #pragma mark - TKCalendarMonthTiles
@@ -294,9 +294,9 @@ static UIImage *tileImage;
     
     NSString *str = [numberFormatter stringFromNumber:@(day)];
     r.size.height -= 2*[TKGlobal iPadFactor];
+    r.origin.y += 5*[TKGlobal iPadFactor];
     
     CGContextSetPatternPhase(context, CGSizeMake(r.origin.x, r.origin.y - 2));
-    
     
     [str drawInRect: r
            withFont: f1
@@ -305,7 +305,7 @@ static UIImage *tileImage;
     
     if(mark){
         r.size.height = 10*[TKGlobal iPadFactor];
-        r.origin.y += 19*[TKGlobal iPadFactor];
+        r.origin.y += 16*[TKGlobal iPadFactor];
         
         [@"•" drawInRect: r
                 withFont: f2

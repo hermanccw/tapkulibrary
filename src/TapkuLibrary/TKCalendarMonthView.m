@@ -67,6 +67,7 @@ static UIImage *tileImage;
 @property (nonatomic,strong) UIImageView *selectedImageView;
 @property (nonatomic,strong) UILabel *currentDay;
 @property (nonatomic,strong) UILabel *dot;
+@property (nonatomic,strong) UIView *selectedBackground;
 @property (nonatomic,strong) NSArray *datesArray;
 @property (nonatomic,strong) NSTimeZone *timeZone;
 @property (nonatomic,strong) NSArray *marks;
@@ -272,6 +273,7 @@ static UIImage *tileImage;
     
     [self.selectedImageView addSubview:self.currentDay];
     [self.selectedImageView addSubview:self.dot];
+    [self.selectedImageView insertSubview:self.selectedBackground atIndex:0];
     self.multipleTouchEnabled = NO;
     
     
@@ -426,22 +428,22 @@ static UIImage *tileImage;
     if(day == today){
         self.currentDay.shadowOffset = CGSizeMake(0, -1);
         self.dot.shadowOffset = CGSizeMake(0, -1);
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
-        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
+//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+//        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
         markWasOnToday = YES;
         
     }else if(markWasOnToday){
         self.dot.shadowOffset = CGSizeMake(0, -1);
         self.currentDay.shadowOffset = CGSizeMake(0, -1);
         
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
-        NSString *path = TKBUNDLE(imageFile);
-        self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
+//        NSString *path = TKBUNDLE(imageFile);
+//        self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
         markWasOnToday = NO;
     }
     
-    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
-    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
+//    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+//    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
     
     self.currentDay.text = [numberFormatter stringFromNumber:@(day)];
     
@@ -535,20 +537,20 @@ static UIImage *tileImage;
     }else if(portion==1 && day == today){
         self.currentDay.shadowOffset = CGSizeMake(0, -1);
         self.dot.shadowOffset = CGSizeMake(0, -1);
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
-        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
+//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+//        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
         markWasOnToday = YES;
     }else if(markWasOnToday){
         self.dot.shadowOffset = CGSizeMake(0, -1);
         self.currentDay.shadowOffset = CGSizeMake(0, -1);
-        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
-        NSString *path = TKBUNDLE(imageFile);
-        self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+//        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
+//        NSString *path = TKBUNDLE(imageFile);
+//        self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
         markWasOnToday = NO;
     }
     
-    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
-    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
+//    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
+//    self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
     
     [self addSubview:self.selectedImageView];
     self.currentDay.text = [NSString stringWithFormat:@"%ld",(long)day];
@@ -606,6 +608,7 @@ static UIImage *tileImage;
     _currentDay.backgroundColor = [UIColor clearColor];
     _currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
     _currentDay.textAlignment = NSTextAlignmentCenter;
+    
     //	_currentDay.shadowColor = [UIColor darkGrayColor];
     //	_currentDay.shadowOffset = CGSizeMake(0, -1);
     return _currentDay;
@@ -614,7 +617,7 @@ static UIImage *tileImage;
     if(_dot) return _dot;
     
     CGRect r = self.selectedImageView.bounds;
-    r.origin.y += 30*[TKGlobal iPadFactor];
+    r.origin.y += 35*[TKGlobal iPadFactor];
     r.size.height -= 31*[TKGlobal iPadFactor];
     _dot = [[UILabel alloc] initWithFrame:r];
     _dot.text = @"•";
@@ -626,13 +629,30 @@ static UIImage *tileImage;
     //	_dot.shadowOffset = CGSizeMake(0, -1);
     return _dot;
 }
+
+- (UIView*) selectedBackground {
+    if (_selectedBackground) return _selectedBackground;
+    CGRect r = self.selectedImageView.bounds;
+    CGFloat backgroundSize = 24*[TKGlobal iPadFactor];
+    r = CGRectMake((r.size.width - backgroundSize) / 2,
+                   ((r.size.height - backgroundSize) / 2) - 1,
+                   backgroundSize,
+                   backgroundSize);
+    _selectedBackground = [[UIView alloc] initWithFrame:r];
+    _selectedBackground.backgroundColor = [UIColor colorWithRed:68.0/255.0 green:68.0/255.0 blue:68.0/255.0 alpha:1.0];
+    _selectedBackground.layer.cornerRadius = _selectedBackground.frame.size.width / 2;
+    return _selectedBackground;
+    
+}
+
 - (UIImageView *) selectedImageView{
     if(_selectedImageView) return _selectedImageView;
     
-    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
-    NSString *path = TKBUNDLE(imageFile);
-    UIImage *img = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
-    _selectedImageView = [[UIImageView alloc] initWithImage:img];
+//    NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
+//    NSString *path = TKBUNDLE(imageFile);
+//    UIImage *img = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+//    _selectedImageView = [[UIImageView alloc] initWithImage:img];
+    _selectedImageView = [[UIImageView alloc] init];
     _selectedImageView.layer.magnificationFilter = kCAFilterNearest;
     _selectedImageView.frame = CGRectMake(0, 0, 47*[TKGlobal iPadFactor], 45*[TKGlobal iPadFactor]);
     return _selectedImageView;

@@ -998,7 +998,7 @@ static UIImage *tileImage;
     _monthYear = [[UILabel alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, VIEW_WIDTH*[TKGlobal iPadFactor], 36*[TKGlobal iPadFactor]), 40*[TKGlobal iPadFactor], 6*[TKGlobal iPadFactor])];
     _monthYear.textAlignment = NSTextAlignmentCenter;
     _monthYear.backgroundColor = [UIColor clearColor];
-    _monthYear.font = [UIFont boldSystemFontOfSize:22];
+    _monthYear.font = [UIFont systemFontOfSize:22];
     //	_monthYear.shadowColor = [UIColor whiteColor];
     //	_monthYear.shadowOffset = CGSizeMake(0,1);
     _monthYear.textColor = gradientColor;

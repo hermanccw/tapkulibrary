@@ -54,7 +54,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CALayer *border = [CALayer layer];
-    border.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 0.5f);
+    border.frame = CGRectMake(0, 0.5, CGRectGetWidth(self.tableView.frame), 0.5f);
     border.backgroundColor = self.tableView.separatorColor.CGColor;
     [self.tableView.layer addSublayer:border];
 }

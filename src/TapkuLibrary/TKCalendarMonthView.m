@@ -87,7 +87,7 @@ static UIImage *tileImage;
         
         CGSize size = CGSizeMake(100, 100);
         UIGraphicsBeginImageContextWithOptions(size, YES, 0);
-        [[UIColor whiteColor] setFill];
+        [[UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0] setFill];
         UIRectFill(CGRectMake(0, 0, size.width, size.height));
         tileImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -293,7 +293,6 @@ static UIImage *tileImage;
     return CGRectMake(col*(46*[TKGlobal iPadFactor])-1, row*(44*[TKGlobal iPadFactor])+(6*[TKGlobal iPadFactor]), 46*[TKGlobal iPadFactor], 44*[TKGlobal iPadFactor]);
 }
 - (void) drawTileInRect:(CGRect)r day:(NSInteger)day mark:(BOOL)mark font:(UIFont*)f1 font2:(UIFont*)f2 context:(CGContextRef)context{
-    
     NSString *str = [numberFormatter stringFromNumber:@(day)];
     r.size.height -= 2*[TKGlobal iPadFactor];
     r.origin.y += 5*[TKGlobal iPadFactor];
@@ -307,7 +306,7 @@ static UIImage *tileImage;
     
     if(mark){
         r.size.height = 10*[TKGlobal iPadFactor];
-        r.origin.y += 16*[TKGlobal iPadFactor];
+        r.origin.y += 17*[TKGlobal iPadFactor];
         
         [@"•" drawInRect: r
                 withFont: f2
@@ -381,11 +380,19 @@ static UIImage *tileImage;
         if(today == i){
             //			CGContextSetShadowWithColor(context, CGSizeMake(0,-1), 0, darkColor);
             [[UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0] set];
-            r.origin.y += 1;
+//            r.origin.y += 1;
         }
         
         BOOL mark = mc > 0 && index < mc ? [self.marks[index] boolValue] : NO;
-        [self drawTileInRect:r day:i mark:mark font:font font2:font2 context:context];
+        
+        if (today == i) {
+            UIFont *boldFont = [UIFont fontWithName:@"Helvetica-Bold" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+            [self drawTileInRect:r day:i mark:mark font:boldFont font2:font2 context:context];
+        }
+        else {
+            [self drawTileInRect:r day:i mark:mark font:font font2:font2 context:context];
+        }
+        
         
         if(today == i){
             //			CGContextSetShadowWithColor(context, CGSizeMake(0,1), 0, whiteColor);
@@ -426,15 +433,15 @@ static UIImage *tileImage;
     BOOL hasDot = NO;
     
     if(day == today){
-        self.currentDay.shadowOffset = CGSizeMake(0, -1);
-        self.dot.shadowOffset = CGSizeMake(0, -1);
+//        self.currentDay.shadowOffset = CGSizeMake(0, -1);
+//        self.dot.shadowOffset = CGSizeMake(0, -1);
 //        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
 //        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
         markWasOnToday = YES;
         
     }else if(markWasOnToday){
-        self.dot.shadowOffset = CGSizeMake(0, -1);
-        self.currentDay.shadowOffset = CGSizeMake(0, -1);
+//        self.dot.shadowOffset = CGSizeMake(0, -1);
+//        self.currentDay.shadowOffset = CGSizeMake(0, -1);
         
 //        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
 //        NSString *path = TKBUNDLE(imageFile);
@@ -463,9 +470,23 @@ static UIImage *tileImage;
     }
     
     self.selectedImageView.frame = CGRectMakeWithSize((column*46*[TKGlobal iPadFactor])-1, (row*44*[TKGlobal iPadFactor])-1, self.selectedImageView.frame.size);
+    self.selectedImageView.frame = CGRectMake(self.selectedImageView.frame.origin.x, self.selectedImageView.frame.origin.y + 1,
+                                              self.selectedImageView.frame.size.width, self.selectedImageView.frame.size.height);
+    
     [self addSubview:self.selectedImageView];
     
-    
+    if (day == today) {
+        self.selectedBackground.backgroundColor = [UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0];
+        if (!self.dot.hidden) {
+            self.dot.textColor = [UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0];
+        }
+    }
+    else {
+        self.selectedBackground.backgroundColor = [UIColor colorWithRed:68.0/255.0 green:68.0/255.0 blue:68.0/255.0 alpha:1.0];;
+        if (!self.dot.hidden) {
+            self.dot.textColor = gradientColor;
+        }
+    }
     return hasDot;
     
 }
@@ -524,6 +545,7 @@ static UIImage *tileImage;
     }
     
     self.currentDay.font = [UIFont fontWithName:@"Helvetica" size:DATE_FONT_SIZE*[TKGlobal iPadFactor]];
+    
     self.currentDay.hidden = NO;
     self.dot.hidden = NO;
     
@@ -535,14 +557,14 @@ static UIImage *tileImage;
         self.dot.hidden = YES;
         
     }else if(portion==1 && day == today){
-        self.currentDay.shadowOffset = CGSizeMake(0, -1);
-        self.dot.shadowOffset = CGSizeMake(0, -1);
+//        self.currentDay.shadowOffset = CGSizeMake(0, -1);
+//        self.dot.shadowOffset = CGSizeMake(0, -1);
 //        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Today Selected Tile.png" : @"calendar/Month Calendar Today Selected Tile~iphone.png";
 //        self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(imageFile)];
         markWasOnToday = YES;
     }else if(markWasOnToday){
-        self.dot.shadowOffset = CGSizeMake(0, -1);
-        self.currentDay.shadowOffset = CGSizeMake(0, -1);
+//        self.dot.shadowOffset = CGSizeMake(0, -1);
+//        self.currentDay.shadowOffset = CGSizeMake(0, -1);
 //        NSString *imageFile = (IDIOM == IPAD) ? @"calendar/Month Calendar Date Tile Selected.png" : @"calendar/Month Calendar Date Tile Selected~iphone.png";
 //        NSString *path = TKBUNDLE(imageFile);
 //        self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
@@ -556,10 +578,12 @@ static UIImage *tileImage;
     self.currentDay.text = [NSString stringWithFormat:@"%ld",(long)day];
     
     if (self.marks.count > 0 && self.marks.count > (row * 7 + column)) {
-        if([self.marks[row * 7 + column] boolValue])
+        if([self.marks[row * 7 + column] boolValue]) {
             [self.selectedImageView addSubview:self.dot];
-        else
+        }
+        else {
             [self.dot removeFromSuperview];
+        }
     }else{
         [self.dot removeFromSuperview];
     }
@@ -568,6 +592,22 @@ static UIImage *tileImage;
     
     
     self.selectedImageView.frame = CGRectMakeWithSize((column*(46*[TKGlobal iPadFactor]))-1, (row*(44*[TKGlobal iPadFactor]))-1, self.selectedImageView.frame.size);
+    self.selectedImageView.frame = CGRectMake(self.selectedImageView.frame.origin.x, self.selectedImageView.frame.origin.y + 1,
+                                              self.selectedImageView.frame.size.width, self.selectedImageView.frame.size.height);
+    
+    if (day == today) {
+        self.selectedBackground.backgroundColor = [UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0];
+        if (!self.dot.hidden) {
+            self.dot.textColor = [UIColor colorWithRed:65.0/255.0 green:109.0/255.0 blue:157.0/255.0 alpha:1.0];
+        }
+    }
+    else {
+        self.selectedBackground.backgroundColor = [UIColor colorWithRed:68.0/255.0 green:68.0/255.0 blue:68.0/255.0 alpha:1.0];;
+        if (!self.dot.hidden) {
+            self.dot.textColor = gradientColor;
+        }
+    }
+    
     
     if(day == selectedDay && selectedPortion == portion) return;
     
@@ -617,11 +657,21 @@ static UIImage *tileImage;
     if(_dot) return _dot;
     
     CGRect r = self.selectedImageView.bounds;
-    r.origin.y += 35*[TKGlobal iPadFactor];
-    r.size.height -= 31*[TKGlobal iPadFactor];
+    r.size.width = 46*[TKGlobal iPadFactor];
+    r.size.height = 44*[TKGlobal iPadFactor];
+    
+    r.size.height -= 2*[TKGlobal iPadFactor];
+    r.origin.y += 5*[TKGlobal iPadFactor];
+    
+        r.size.height = 10*[TKGlobal iPadFactor];
+        r.origin.y += 27.5*[TKGlobal iPadFactor];
+    
+    
+//    r.origin.y += 15.5*[TKGlobal iPadFactor];
+//    r.origin.x -= 0.5*[TKGlobal iPadFactor];
     _dot = [[UILabel alloc] initWithFrame:r];
     _dot.text = @"•";
-    _dot.textColor = [UIColor whiteColor];
+    _dot.textColor = gradientColor;// [UIColor whiteColor];
     _dot.backgroundColor = [UIColor clearColor];
     _dot.font = [UIFont fontWithName:@"Helvetica" size:DOT_FONT_SIZE*[TKGlobal iPadFactor]];
     _dot.textAlignment = NSTextAlignmentCenter;
@@ -654,7 +704,7 @@ static UIImage *tileImage;
 //    _selectedImageView = [[UIImageView alloc] initWithImage:img];
     _selectedImageView = [[UIImageView alloc] init];
     _selectedImageView.layer.magnificationFilter = kCAFilterNearest;
-    _selectedImageView.frame = CGRectMake(0, 0, 47*[TKGlobal iPadFactor], 45*[TKGlobal iPadFactor]);
+    _selectedImageView.frame = CGRectMake(0, 0, 46*[TKGlobal iPadFactor], 44*[TKGlobal iPadFactor]);
     return _selectedImageView;
 }
 

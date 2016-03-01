@@ -1028,7 +1028,7 @@ static UIImage *tileImage;
     
     UIView *gradient = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOP_BAR_HEIGHT*[TKGlobal iPadFactor])];
     gradient.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    gradient.backgroundColor = [UIColor whiteColor];
+    gradient.backgroundColor = [UIColor colorWithRed:238.0/255.0 green:238.0/255.0 blue:238.0/255.0 alpha:1.0];
     
 //    TKGradientView *gradient = [[TKGradientView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, TOP_BAR_HEIGHT*[TKGlobal iPadFactor])];
 //    gradient.colors = @[[UIColor colorWithHex:0xf4f4f5],[UIColor colorWithHex:0xccccd1]];

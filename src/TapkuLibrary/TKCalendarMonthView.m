@@ -272,7 +272,7 @@ static UIImage *tileImage;
     self.frame = CGRectMake(0, 1.0, VIEW_WIDTH*[TKGlobal iPadFactor], h+1);
     
     [self.selectedImageView addSubview:self.currentDay];
-    [self.selectedImageView addSubview:self.dot];
+//    [self.selectedImageView addSubview:self.dot];
     [self.selectedImageView insertSubview:self.selectedBackground atIndex:0];
     self.multipleTouchEnabled = NO;
     
@@ -458,7 +458,7 @@ static UIImage *tileImage;
         
         if([self.marks[row * 7 + column] boolValue]){
             hasDot = YES;
-            [self.selectedImageView addSubview:self.dot];
+//            [self.selectedImageView addSubview:self.dot];
         }else
             [self.dot removeFromSuperview];
         
@@ -579,7 +579,7 @@ static UIImage *tileImage;
     
     if (self.marks.count > 0 && self.marks.count > (row * 7 + column)) {
         if([self.marks[row * 7 + column] boolValue]) {
-            [self.selectedImageView addSubview:self.dot];
+//            [self.selectedImageView addSubview:self.dot];
         }
         else {
             [self.dot removeFromSuperview];
@@ -657,18 +657,17 @@ static UIImage *tileImage;
     if(_dot) return _dot;
     
     CGRect r = self.selectedImageView.bounds;
-    r.size.width = 46*[TKGlobal iPadFactor];
+    r.size.width = 47*[TKGlobal iPadFactor];
     r.size.height = 44*[TKGlobal iPadFactor];
     
     r.size.height -= 2*[TKGlobal iPadFactor];
     r.origin.y += 5*[TKGlobal iPadFactor];
     
-        r.size.height = 10*[TKGlobal iPadFactor];
-        r.origin.y += 27.5*[TKGlobal iPadFactor];
+    r.size.height = 9.5*[TKGlobal iPadFactor];
+    r.origin.y += 28*[TKGlobal iPadFactor];
+    r.origin.x -= 0.6*[TKGlobal iPadFactor];
     
     
-//    r.origin.y += 15.5*[TKGlobal iPadFactor];
-//    r.origin.x -= 0.5*[TKGlobal iPadFactor];
     _dot = [[UILabel alloc] initWithFrame:r];
     _dot.text = @"•";
     _dot.textColor = gradientColor;// [UIColor whiteColor];
